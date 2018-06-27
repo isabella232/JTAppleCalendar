@@ -199,7 +199,7 @@ public struct Month {
     }
 
     // Return the number of rows for a section in the month
-    func numberOfRows(for section: Int, developerSetRows: Int) -> Int {
+    public func numberOfRows(for section: Int, developerSetRows: Int) -> Int {
         var retval: Int
         guard let theSection = sectionIndexMaps[section] else {
             return 0

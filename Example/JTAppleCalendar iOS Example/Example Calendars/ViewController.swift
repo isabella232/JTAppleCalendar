@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     var generateOutDates: OutDateCellGeneration = .tillEndOfGrid
     var prePostVisibility: ((CellState, CellView?)->())?
     var hasStrictBoundaries = true
-    let firstDayOfWeek: DaysOfWeek = .monday
+    let firstDayOfWeek: DaysOfWeek = .sunday
     let disabledColor = UIColor.lightGray
     let enabledColor = UIColor.blue
     let dateCellSize: CGFloat? = nil

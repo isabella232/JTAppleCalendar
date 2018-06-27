@@ -36,6 +36,7 @@ protocol JTAppleCalendarDelegateProtocol: class {
     var monthMap: [Int: Int] {get set}
     var scrollDirection: UICollectionViewScrollDirection! {get set}
     var sectionInset: UIEdgeInsets {get set}
+    var sectionContentInset: UIEdgeInsets {get set}
     var totalDays: Int {get}
     var requestedContentOffset: CGPoint {get}
     

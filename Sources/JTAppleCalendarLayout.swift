@@ -44,6 +44,7 @@ class JTAppleCalendarLayout: UICollectionViewLayout, JTAppleCalendarLayoutProtoc
     var minimumInteritemSpacing: CGFloat = 0
     var minimumLineSpacing: CGFloat = 0
     var sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    var sectionContentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     var headerSizes: [AnyHashable:CGFloat] = [:]
     var focusIndexPath: IndexPath?
     var isCalendarLayoutLoaded: Bool { return !cellCache.isEmpty }
@@ -167,6 +168,7 @@ class JTAppleCalendarLayout: UICollectionViewLayout, JTAppleCalendarLayoutProtoc
         minimumInteritemSpacing = delegate.minimumInteritemSpacing
         minimumLineSpacing = delegate.minimumLineSpacing
         sectionInset = delegate.sectionInset
+        sectionContentInset = delegate.sectionContentInset
         cellSize = updatedLayoutCellSize
     }
     
@@ -199,10 +201,8 @@ class JTAppleCalendarLayout: UICollectionViewLayout, JTAppleCalendarLayoutProtoc
         let fullSection = numberOfRows * maxNumberOfDaysInWeek
         var extra = 0
         
-        
-        xCellOffset = sectionInset.left
-        endSeparator = sectionInset.left + sectionInset.right
-        
+        xCellOffset = sectionInset.left + sectionContentInset.left
+        endSeparator = sectionInset.left + sectionContentInset.left + sectionInset.right + sectionContentInset.right
         
         for aMonth in monthInfo {
             for numberOfDaysInCurrentSection in aMonth.sections {
@@ -273,9 +273,9 @@ class JTAppleCalendarLayout: UICollectionViewLayout, JTAppleCalendarLayoutProtoc
         var totalDayCounter = 0
         var headerGuide = 0
         
-        xCellOffset = sectionInset.left
-        yCellOffset = sectionInset.top
-        endSeparator = sectionInset.top + sectionInset.bottom
+        xCellOffset = sectionInset.left + sectionContentInset.left
+        yCellOffset = sectionInset.top + sectionContentInset.top
+        endSeparator = sectionInset.top + sectionInset.bottom + sectionContentInset.top + sectionContentInset.bottom
         
         for aMonth in monthInfo {
             for numberOfDaysInCurrentSection in aMonth.sections {
@@ -302,14 +302,14 @@ class JTAppleCalendarLayout: UICollectionViewLayout, JTAppleCalendarLayoutProtoc
                             // We are at the last item in the
                             // section && if we have headers
                             headerGuide = 0
-                            xCellOffset = sectionInset.left
+                            xCellOffset = sectionInset.left + sectionContentInset.left
                             yCellOffset += attribute.5
                             contentHeight += attribute.5
                         }
                     } else {
                         totalDayCounter += 1
                         if totalDayCounter % maxNumberOfDaysInWeek == 0 {
-                            xCellOffset = sectionInset.left
+                            xCellOffset = sectionInset.left + sectionContentInset.left
                             yCellOffset += attribute.5
                             contentHeight += attribute.5
                         } else if totalDayCounter == delegate.totalDays {
@@ -536,7 +536,7 @@ class JTAppleCalendarLayout: UICollectionViewLayout, JTAppleCalendarLayoutProtoc
                 return (cachedCell.width, cachedCell.height)
             }
         }
-        let width = cellSize.width - ((sectionInset.left / 7) + (sectionInset.right / 7))
+        let width = cellSize.width - ((sectionInset.left / 7) + (sectionInset.right / 7) + (sectionContentInset.left / 7) + (sectionContentInset.right / 7))
         var size: (width: CGFloat, height: CGFloat) = (width, cellSize.height)
         if itemSizeWasSet {
             if scrollDirection == .vertical {

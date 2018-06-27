@@ -339,7 +339,7 @@ extension JTAppleCalendarView {
         return cellState
     }
     
-    func monthInfoFromSection(_ section: Int) -> (range: (start: Date, end: Date), month: Int, rowCount: Int)? {
+    public func monthInfoFromSection(_ section: Int) -> (range: (start: Date, end: Date), month: Int, rowCount: Int)? {
         guard let monthIndex = monthMap[section] else {
             return nil
         }

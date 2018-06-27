@@ -155,6 +155,7 @@ open class JTAppleCalendarView: UICollectionView {
     }
     
     open var sectionInset: UIEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0)
+    open var sectionContentInset: UIEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0)
     open var minimumInteritemSpacing: CGFloat = 0
     open var minimumLineSpacing: CGFloat = 0
     

@@ -171,7 +171,7 @@ extension TestViewController: JTAppleCalendarViewDataSource, JTAppleCalendarView
         let startDate = formatter.date(from: "2017 01 01")!
         let endDate = formatter.date(from: "2030 02 01")!
         
-        let parameters = ConfigurationParameters(startDate: startDate,endDate: endDate)
+        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, firstDayOfWeek: .sunday)
         return parameters
     }
     
